@@ -1,0 +1,28 @@
+{
+  "name": "chihuahua-create-shortcut",
+  "version": "1.0.0",
+  "description": "Create shortcut to run game with uevr",
+  "main": "src/index.ts",
+  "scripts": {
+    "start": "ts-node src/index.ts \"C:\\qqq.exe\" dummy/test.url",
+    "dev": "npm run build:live",
+    "build": "tsc -p .",
+    "build:live": "nodemon --watch 'src/**/*.ts' --exec \"ts-node\" src/index.ts"
+  },
+  "keywords": [
+    "typescript",
+    "nodejs"
+  ],
+  "author": "seeingred",
+  "license": "GPL-3.0-only",
+  "dependencies": {
+    "create-desktop-shortcuts": "^1.11.0",
+    "steam-game-path": "^2.3.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.5.4"
+  },
+  "devDependencies": {
+    "@types/node": "^22.5.4",
+    "nodemon": "^3.1.4"
+  }
+}

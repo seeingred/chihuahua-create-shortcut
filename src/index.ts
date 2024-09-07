@@ -121,7 +121,7 @@ const main = async (chihuahuaPath: string, sourceFile: string) => {
 }
 
 const chihuahuaPath = process.argv[2]
-console.log(`chihuahuaPath:  `, chihuahuaPath)
+// console.log(`chihuahuaPath:  `, chihuahuaPath)
 const sourceLnkFile = process.argv[3]
-console.log(`sourceLnkFile:  `, sourceLnkFile)
+// console.log(`sourceLnkFile:  `, sourceLnkFile)
 main(chihuahuaPath, sourceLnkFile)

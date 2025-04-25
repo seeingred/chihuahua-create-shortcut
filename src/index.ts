@@ -143,6 +143,11 @@ const main = async (chihuahuaPath: string, sourceFile: string) => {
 
     options.name = options.name + ' [ue]'
 
+    // remove symbols not allowed in windows file name like : / \ * ? " < > |
+    options.name = options.name.replace(/[:\\/\*\?"<>|]/g, '')
+
+
+
     console.log(`LNK FILE OPTIONS:  `, options)
 
     await createDesktopShortcut({

@@ -20,6 +20,7 @@ enum StoreType {
 
 // function to find exe file in a directory
 function findExeFile(dir: string): string | null {
+    console.log(`findExeFile`, dir);
     const files = fs.readdirSync(dir)
     for (const file of files) {
         if (path.extname(file) === '.exe') {
@@ -51,7 +52,7 @@ type LnkProperties = {
     WorkingDirectory: string
 }
 
-const main = async (chihuahuaPath: string, sourceFile: string) => {
+const main = async (chihuahuaPath: string, sourceFile: string, isNightly: boolean) => {
     const sourceFileExtension = sourceFile.substring(sourceFile.lastIndexOf('.'))
     const sourceFileName = sourceFile.substring(sourceFile.lastIndexOf('\\') + 1)
     const sourceFileNameWithoutExtension = sourceFileName.substring(0, sourceFileName.lastIndexOf('.'))
@@ -146,7 +147,9 @@ const main = async (chihuahuaPath: string, sourceFile: string) => {
     // remove symbols not allowed in windows file name like : / \ * ? " < > |
     options.name = options.name.replace(/[:\\/\*\?"<>|]/g, '')
 
-
+    if (isNightly) {
+        options.arguments += ' --uevr-build Nightly'
+    }
 
     console.log(`LNK FILE OPTIONS:  `, options)
 
@@ -157,4 +160,5 @@ const main = async (chihuahuaPath: string, sourceFile: string) => {
 
 const chihuahuaPath = process.argv[2]
 const sourceLnkFile = process.argv[3]
-main(chihuahuaPath, sourceLnkFile)
+const isNightly = !!process.argv[4]
+main(chihuahuaPath, sourceLnkFile, isNightly)
